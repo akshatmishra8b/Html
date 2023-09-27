@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Portfolio</title>
+    <style>
+        /* Global styles */
+        body {
+            background-color: #000; /* Dark background color */
+            color: #fff; /* Light text color */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background-color: #111; /* Dark background color in dark mode */
+            color: #fff;
+        }
+
+        /* Stylish lines in the background */
+        .lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Prevent lines from blocking interactions */
+        }
+
+        .line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, #0077ff, transparent); /* Stylish line gradient */
+            animation: move 5s linear infinite; /* Animation for lines */
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Section container styles */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            flex-direction: column;
+        }
+
+        /* Abstract background for each section */
+        .section-bg {
+            background: #000; /* Dark background */
+        }
+
+        /* Heading styles */
+        .section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Text styles */
+        .section p {
+            font-size: 1.4rem;
+            margin: 0 20px;
+            line-height: 1.6;
+        }
+
+        /* Lines at the corners */
+        .corner-line {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background-color: #0077ff;
+            animation: pulsate 2s infinite;
+        }
+        .top-left {
+            top: 0;
+            left: 0;
+            transform: rotate(45deg);
+        }
+        .top-right {
+            top: 0;
+            right: 0;
+            transform: rotate(-45deg);
+        }
+        .bottom-left {
+            bottom: 0;
+            left: 0;
+            transform: rotate(-45deg);
+        }
+        .bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: rotate(45deg);
+        }
+
+        /* About Me section styles */
+        .about-me-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .more-info {
+            display: none;
+        }
+
+        /* Futuristic button styles */
+        .futuristic-button {
+            background-color: transparent;
+            border: 2px solid #0077ff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .futuristic-button:hover {
+            background-color: #0077ff;
+            color: #fff;
+        }
+
+        /* Centering for the expanded content */
+        .more-info.show {
+            display: block;
+            text-align: center;
+        }
+
+        /* Contact Me section styles */
+        .contact-form {
+            max-width: 400px;
+            text-align: left;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            background-color: #2a2a2a;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .contact-form input[type="submit"] {
+            background-color: #0077ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.2rem;
+        }
+        .contact-form input[type="submit"]:hover {
+            background-color: #0055cc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Stylish lines in the background -->
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+  
+    <div class="section section-bg" id="about-me">
+        <section id="about-me">
+            <div class="profile-pic-container">
+                <div class="profile-pic">
+                    <img src="profile.jpg" alt="Profile Picture">
+                </div>
+            </div>
+            <h1>Your Futuristic Name</h1>
+            <p>A visionary explorer in the digital realm, shaping the future of technology.</p>
+            <div id="more-info" class="more-info">
+                <p>Passionate about AI, blockchain, and the limitless possibilities of the digital age. Join me on this journey to the future!</p>
+            </div>
+            <button id="show-more" class="futuristic-button">Show More</button>
+        </section>
+    </div>
+
+    <!-- ... (other sections) ... -->
+
+   <script>
+        // JavaScript to toggle the "Show More" button in About Me
+        const showMoreButton = document.getElementById('show-more');
+        const moreInfo = document.getElementById('more-info');
+
+        showMoreButton.addEventListener('click', () => {
+            if (moreInfo.style.display === 'none') {
+                moreInfo.style.display = 'block';
+                showMoreButton.textContent = 'Show Less';
+            } else {
+                moreInfo.style.display = 'none';
+                showMoreButton.textContent = 'Show More';
+            }
+        });
+    </script>
+</body>
+</html>
